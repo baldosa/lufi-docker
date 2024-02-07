@@ -4,37 +4,14 @@ version: "3"
 services:
   lufi:
     container_name: lufi
-    image: "hamzelot/lufi"
     build: .
     ports:
-      - 8080:8081
+      - 9999:8081
     volumes:
       - "data:/usr/lufi/files"
+      - ./camba_theme:/usr/lufi/themes/camba
     restart: "unless-stopped"
-    environment:
-      UID: 1000
-      GID: 1000
-      URL_LENGTH: 8
-      MAX_FILE_SIZE: 104857600
-      MAX_DELAY: 180
-      USE_PROXY: 0
-      ALLOW_PWD: 1
-      CONTACT_HTML: "<a href= 'your-website.eu'>here</a>" 
-      REPORT_EMAIL: "name@email.eu"
-      SITE_NAME: lufi
-      THEME: "default"
-      PROVIS_STEP: 5
-      PROVISIONING: 100
-      TOKEN_LENGTH: 32
-      LIMIT_FILE_DESTROY_DAYS: 0
-      URL_PREFIX: "/"
-      FORCE_BURN_AFTER_READING: 0
-      X_FRAME: "DENY"
-      WORKER: 30
-      CLIENTS: 1
-      X_CONTENT_TYPE: "nosniff"
-      X_XSS_PROTECTION: "1; mode=block"
-      KEEP_IP_DURING: 365
-      DISABLE_MAIL_SENDING: 1
+    env_file:
+      .env
 volumes:
   data:

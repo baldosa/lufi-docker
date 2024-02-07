@@ -1,7 +1,7 @@
 FROM alpine/git AS git
 
 RUN git clone https://framagit.org/fiat-tux/hat-softwares/lufi.git --depth 1 /lufi && \
-rm -r /lufi/.git
+	rm -r /lufi/.git
 
 FROM debian:bullseye-slim
 
@@ -51,9 +51,12 @@ ENV X_XSS_PROTECTION "1; mode=block"
 ENV KEEP_IP_DURING 365
 ENV WORKER 30
 ENV CLIENTS 1
-ENV DISABLE_MAIL_SENDING 1
+ENV DISABLE_MAIL_SENDING 0
 ENV UID=1000
 ENV GID=1000
+ENV SMTP_SERVER='stmp.example.org'
+ENV SMTP_USER='mail@example.com'
+ENV SMTP_PASSWORD: 'password'
 
 COPY lufi.conf .
 COPY docker-entrypoint.sh .

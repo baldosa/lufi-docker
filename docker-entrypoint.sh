@@ -29,5 +29,6 @@ gosu lufi "$@"
 
 while :
 do
-	gosu lufi tail -f ./log/production.log
+	# gosu lufi tail -f ./log/production.log
+    gosu lufi tail -f /var/log/lastlog
 done
